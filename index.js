@@ -151,9 +151,6 @@ class PageKeyboard {
     this.keyboard = this.createDomNode(this.keyboard, 'div', 'page__keyboard');
     this.appendElements();
   }
-  // setAttribute(element, atrName, value) {
-  //   this.element.setAttribute(this.atrName, this.value)
-  // }
 
   appendElements() {
     document.body.append(this.container);
@@ -177,41 +174,45 @@ const generateButton = (btn) => {
   button.setAttribute('type', 'button');
   button.innerHTML = `${btn.eventKey}`;
   if (
-    button.classList.contains("Backspace") ||
-    button.classList.contains("Enter") ||
-    button.classList.contains("ShiftLeft") ||
-    button.classList.contains("ShiftRight") ||
-    button.classList.contains("CapsLock")
-    ) {
-      button.classList.add("keyboard__button_wide", "keyboard__button_dark");
-    }
-    if (button.classList.contains("Space")) {
-      button.classList.add(
-        "keyboard__button_widest",
-        "keyboard__button_dark"
-      );
-    }
-    if (
-      button.classList.contains("Tab") ||
-      button.classList.contains("Delete") ||
-      button.classList.contains("ControlLeft") ||
-      button.classList.contains("ControlRight") ||
-      button.classList.contains("MetaLeft") ||
-      button.classList.contains("AltLeft") ||
-      button.classList.contains("AltRight")
-    ) {
-      button.classList.add("keyboard__button", "keyboard__button_dark");
-    } else {
-      button.classList.add("keyboard__button");
-    }
-    // const lineBreak =
-    //   ["Backspace", "Delete", "Enter", "ShiftRight"].indexOf(button) !== -1;
-    //   if(lineBreak) {
+    button.classList.contains('Backspace')
+    || button.classList.contains('Enter')
+    || button.classList.contains('ShiftLeft')
+    || button.classList.contains('ShiftRight')
+    || button.classList.contains('CapsLock')
+  ) {
+    button.classList.add('keyboard__button_wide', 'keyboard__button_dark');
+  }
+  if (button.classList.contains('Space')) {
+    button.classList.add(
+      'keyboard__button_widest',
+      'keyboard__button_dark',
+    );
+  }
+  if (
+    button.classList.contains('Tab')
+      || button.classList.contains('Delete')
+      || button.classList.contains('ControlLeft')
+      || button.classList.contains('ControlRight')
+      || button.classList.contains('MetaLeft')
+      || button.classList.contains('AltLeft')
+      || button.classList.contains('AltRight')
+  ) {
+    button.classList.add('keyboard__button', 'keyboard__button_dark');
+  } else {
+    button.classList.add('keyboard__button');
+  }
+  // const lineBreak =
+  //   ["Backspace", "Delete", "Enter", "ShiftRight"].indexOf(button) !== -1;
+  //   if(lineBreak) {
 
-    //   }
+  //   }
   return button;
 };
-
+function init() {
+  renderContainer();
+  renderButtons();
+  setAttribute();
+};
 //   generateButtons() {
 //     let buttonboard = document.createElement("div");
 //     buttonboard.className = "buttonboard";
@@ -221,14 +222,16 @@ const generateButton = (btn) => {
 const renderContainer = () => {
   const pageContent = new PageKeyboard();
   pageContent.buildElements();
-  setAttribute();
   // return pageContent;
 };
 const setAttribute = () => {
-let textarea = document.querySelector(".page__textarea");
-textarea.setAttribute("row", "5");
-textarea.setAttribute("cols", "50");
-}
+  const textarea = document.querySelector('.page__textarea');
+  textarea.setAttribute('row', '5');
+  textarea.setAttribute('cols', '50');
+};
+
+
+
 const getKeyboardContainer = () => {
   const keyboard = document.querySelector('.page__keyboard');
   keyboard.innerHTML = '';
@@ -248,15 +251,63 @@ const renderButtons = () => {
     keyboardContainer.append(generateButton(el));
   });
 };
-// // console.log(document.querySelector(".page__keyboard"));
 
-window.onload = function () {
-  //   console.log("Hello");
-
+function init() {
   renderContainer();
   renderButtons();
-
-  //   if(data) {
-  //     generateButtons();
-  //   }
+  setAttribute();
 };
+
+init();
+
+
+// init();
+// functionality
+// let but = []
+// document.onkeydown = function(event) {
+// but.push(`eventCode: ${event.code}, eventKey: ${event.key}`);
+// }
+// console.log(but);
+
+const buttons = document.querySelectorAll(".button");
+// console.log(buttons);
+const textarea = document.querySelector('.page__textarea');
+// console.log(textarea);
+
+// console.log(document.querySelector(".KeyF"));
+// console.log(document.querySelector(".event.code"));
+document.body.addEventListener('keydown', function(event) {
+
+
+  document.querySelector(`.${event.code}`).classList.add("active");
+  
+});
+document.body.addEventListener('keyup', function(event) {
+
+  buttons.forEach(function (element) {
+    element.classList.remove("active");
+  });
+  document.querySelector(`.${event.code}`).classList.remove("active");
+  
+});
+  //  for (let i=0 ; i <buttons.length ; i++) {
+  //   buttons[i].classList.add("active");
+
+    // console.log(buttons[0]);
+ //UpperCase() method returns the value of the string converted to uppercase
+      // if(buttons[i].innerHTML == index.key.toUpperCase()){
+      //     buttons[i].classList.add('active')
+      // };
+  
+// textarea.innerHTML += index.key
+//   if(index.key =='Backspace'){
+//     textarea.innerHTML=textarea.innerHTML.slice(0 , -10)
+//   }
+// })
+// window.addEventListener('keyup' , function(index){
+//   for(let j=0 ; j<buttons.length ; j++){
+//       if(buttons[j].innerHTML == index.key.toUpperCase()){
+//           buttons[j].classList.remove('active')
+//       }
+//   }
+// });

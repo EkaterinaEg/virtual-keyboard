@@ -52,14 +52,11 @@ text-shadow: 0.5rem 0.2rem 0.3rem rgba(46, 29, 87, 0.2);
   font-size: 1.05rem;
   outline: none;
   cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  vertical-align: top;
-  padding: 0;
-  position: relative;
+  transition: .3s;
 }
-
+.button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
 .keyboard__button_wide {
   width: 110px;
 }
@@ -67,4 +64,7 @@ text-shadow: 0.5rem 0.2rem 0.3rem rgba(46, 29, 87, 0.2);
 .keyboard__button_widest {
   width: 410px;
 
+}
+.active {
+  background-color: orange;
 }
