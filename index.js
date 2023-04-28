@@ -161,75 +161,49 @@ class PageKeyboard {
     this.container.append(this.keyboard);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   createDomNode(node, element, ...classes) {
+    // eslint-disable-next-line no-param-reassign
     node = document.createElement(element);
     node.classList.add(...classes);
     return node;
   }
 }
 
-// const generateButton = btn => {
-//   const button = document.createElement('button');
-//   button.className = `button ${btn.eventCode}`;
-//   button.setAttribute('type', 'button');
-//   button.innerHTML = `${btn.eventKey}`;
-//   const lineBreak =
-//     ["backspace", "Del", "Enter", "Shift"].indexOf(button) !== -1;
-//   if (
-//     button === "Backspace" ||
-//     button === "Enter" ||
-//     button === "Shift" ||
-//     button === "Capslock"
-//   ) {
-//     button.classList.add("keyboard__button_wide", "keyboard__button_dark");
-//   }
-//   if (button === "Space") {
-//     buttonElement.classList.add(
-//       "keyboard__button_widest",
-//       "keyboard__button_dark"
-//     );
-//   }
-//   if (
-//     (button === "Tab" ||
-//       button === "Del" ||
-//       button === "Ctrl" ||
-//       button === "Win",
-//     button === "Alt")
-//   ) {
-//     button.classList.add("keyboard__button", "keyboard__button_dark");
-//   } else {
-//     button.classList.add("keyboard__button");
-//   }
-//   return button;
-// };
-// class Button {
-//   constructor({eventCode, eventKey}) {
-//     this.button = "";
-//     this.value = eventKey;
-//     this.class = eventCode;
-//   }
-//   generateButton() {
-
-//     this.button = this.button(
-//       button,
-//       "button",
-//       "keyboard__button",
-//       `${this.eventCode}`
-//     );
-//   }
-
-//   createDomNode(node, element, ...classes) {
-//     node = document.createElement(element);
-//     node.classList.add(...classes);
-//     return node;
-//   }
-// }
-// class Buttons extends buttonboard {
-//   constructor() {
-// //   this.buttonboard = buttonboard;
-//   this.buttons=[];
-//   this.button = button;
-//   }
+const generateButton = (btn) => {
+  const button = document.createElement('button');
+  button.className = `button ${btn.eventCode}`;
+  button.setAttribute('type', 'button');
+  button.innerHTML = `${btn.eventKey}`;
+  //   const lineBreak =
+  //     ["backspace", "Del", "Enter", "Shift"].indexOf(button) !== -1;
+  //   if (
+  //     button === "Backspace" ||
+  //     button === "Enter" ||
+  //     button === "Shift" ||
+  //     button === "Capslock"
+  //   ) {
+  //     button.classList.add("keyboard__button_wide", "keyboard__button_dark");
+  //   }
+  //   if (button === "Space") {
+  //     buttonElement.classList.add(
+  //       "keyboard__button_widest",
+  //       "keyboard__button_dark"
+  //     );
+  //   }
+  //   if (
+  //     (button === "Tab" ||
+  //       button === "Del" ||
+  //       button === "Ctrl" ||
+  //       button === "Win",
+  //     button === "Alt")
+  //   ) {
+  //     button.classList.add("keyboard__button", "keyboard__button_dark");
+  //   } else {
+  //     button.classList.add("keyboard__button");
+  //   }
+  return button;
+};
 
 //   generateButtons() {
 //     let buttonboard = document.createElement("div");
@@ -238,43 +212,36 @@ class PageKeyboard {
 //     // Creates HTML for an icon
 //
 const renderContainer = () => {
-  console.log('hel');
   const pageContent = new PageKeyboard();
-  console.log(pageContent);
   pageContent.buildElements();
-  console.log('h');
-  console.log(pageContent);
   // return pageContent;
 };
-// const getKeyboardContainer = () => {
-//   const keyboard = document.querySelector('.page__keyboard');
-//   //   console.log("hell");
-//   console.log(keyboard);
-//   keyboard.innerHTML = '';
-//   return keyboard;
-// };
-// const generateButtons = data => {
-//   const buttons = [];
-//   data.forEach(button => {
-//     buttons.push(button);
-//   });
-//   return buttons;
-//   //   console.log(buttons);
-// };
-// const renderButtons = () => {
-//   const keyboardContainer = getKeyboardContainer();
-//   generateButtons(initialData).forEach(el => {
-//     // console.log(el);
-//     keyboardContainer.append(generateButton(el));
-//   });
-// };
+const getKeyboardContainer = () => {
+  const keyboard = document.querySelector('.page__keyboard');
+  keyboard.innerHTML = '';
+  return keyboard;
+};
+const generateButtons = (data) => {
+  const buttons = [];
+  data.forEach((button) => {
+    buttons.push(button);
+  });
+  return buttons;
+  //   console.log(buttons);
+};
+const renderButtons = () => {
+  const keyboardContainer = getKeyboardContainer();
+  generateButtons(initialData).forEach((el) => {
+    keyboardContainer.append(generateButton(el));
+  });
+};
 // // console.log(document.querySelector(".page__keyboard"));
 
 window.onload = function () {
   //   console.log("Hello");
 
   renderContainer();
-  //   renderButtons();
+  renderButtons();
 
   //   if(data) {
   //     generateButtons();
