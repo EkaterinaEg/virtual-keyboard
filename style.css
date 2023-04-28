@@ -1,25 +1,50 @@
-.keyboard-input {
-  position: absolute;
-  top: 130px;
-  right: 30px;
-  width: 300px;
+.page {
+  font-family: 'Kanit', sans-serif;
+  font-weight: normal;
+  font-size: 10px;
 }
-.keyboard {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  padding: 5px 0;
-  background: #4c577c;
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 40px;
+}
+.page__title {
+font-size: 2rem;
+margin: 0.5rem auto;
+font-weight: bold;
+text-align: center;
+color: rgba(46, 29, 87, 0.822);
+text-shadow: 0.5rem 0.2rem 0.3rem rgba(46, 29, 87, 0.2);
+}
+
+.page__textarea {
+  display: block;
+  width: 900px;
+  height: auto;
+  margin: 1rem auto;
+  padding: 1rem; 
+  font-size: 1rem;
+  border-color:rgba(46, 29, 87, 0.822);
+}
+.page__keyboard {
+  width: 900px;
+  height: auto;
+  margin: 10px auto;
+  padding: 10px;
+  background: rgba(46, 29, 87, 0.822);
+  border: 5px solid rgba(46, 29, 87, 1);
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
   user-select: none;
   transition: bottom 0.5s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .button {
-  height: 45px;
-  width: 6%;
-  max-width: 90px;
-  margin: 3px;
+  width: 50px;
+  height: 50px;
+  margin: 5px;
   border-radius: 4px;
   border: none;
   background: rgba(255, 255, 255, 0.2);
@@ -35,11 +60,11 @@
   position: relative;
 }
 
-.button_wide {
-  width: 12%;
+.keyboard__button_wide {
+  width: 110px;
 }
 
-.button_widest {
-  width: 36%;
-  max-width: 500px;
+.keyboard__button_widest {
+  width: 410px;
+
 }

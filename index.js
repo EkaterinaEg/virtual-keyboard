@@ -18,7 +18,6 @@ const initialData = [
   { eventCode: 'KeyW', eventKey: 'w' },
   { eventCode: 'KeyE', eventKey: 'e' },
   { eventCode: 'KeyR', eventKey: 'r' },
-  { eventCode: 'KeyR', eventKey: 'r' },
   { eventCode: 'KeyT', eventKey: 't' },
   { eventCode: 'KeyY', eventKey: 'y' },
   { eventCode: 'KeyU', eventKey: 'u' },
@@ -38,7 +37,6 @@ const initialData = [
   { eventCode: 'KeyH', eventKey: 'h' },
   { eventCode: 'KeyJ', eventKey: 'j' },
   { eventCode: 'KeyK', eventKey: 'k' },
-  { eventCode: 'KeyL', eventKey: 'l' },
   { eventCode: 'KeyL', eventKey: 'l' },
   { eventCode: 'Semicolon', eventKey: ';' },
   { eventCode: 'Quote', eventKey: "'" },
@@ -64,7 +62,7 @@ const initialData = [
   { eventCode: 'ArrowLeft', eventKey: '◄' },
   { eventCode: 'ArrowDown', eventKey: '▼' },
   { eventCode: 'ArrowRight', eventKey: '►' },
-  { eventCode: 'ControRight', eventKey: 'Ctrl' },
+  { eventCode: 'ControlRight', eventKey: 'Ctrl' },
 ];
 // const data = [
 //   "`",
@@ -153,6 +151,9 @@ class PageKeyboard {
     this.keyboard = this.createDomNode(this.keyboard, 'div', 'page__keyboard');
     this.appendElements();
   }
+  // setAttribute(element, atrName, value) {
+  //   this.element.setAttribute(this.atrName, this.value)
+  // }
 
   appendElements() {
     document.body.append(this.container);
@@ -175,33 +176,39 @@ const generateButton = (btn) => {
   button.className = `button ${btn.eventCode}`;
   button.setAttribute('type', 'button');
   button.innerHTML = `${btn.eventKey}`;
-  //   const lineBreak =
-  //     ["backspace", "Del", "Enter", "Shift"].indexOf(button) !== -1;
-  //   if (
-  //     button === "Backspace" ||
-  //     button === "Enter" ||
-  //     button === "Shift" ||
-  //     button === "Capslock"
-  //   ) {
-  //     button.classList.add("keyboard__button_wide", "keyboard__button_dark");
-  //   }
-  //   if (button === "Space") {
-  //     buttonElement.classList.add(
-  //       "keyboard__button_widest",
-  //       "keyboard__button_dark"
-  //     );
-  //   }
-  //   if (
-  //     (button === "Tab" ||
-  //       button === "Del" ||
-  //       button === "Ctrl" ||
-  //       button === "Win",
-  //     button === "Alt")
-  //   ) {
-  //     button.classList.add("keyboard__button", "keyboard__button_dark");
-  //   } else {
-  //     button.classList.add("keyboard__button");
-  //   }
+  if (
+    button.classList.contains("Backspace") ||
+    button.classList.contains("Enter") ||
+    button.classList.contains("ShiftLeft") ||
+    button.classList.contains("ShiftRight") ||
+    button.classList.contains("CapsLock")
+    ) {
+      button.classList.add("keyboard__button_wide", "keyboard__button_dark");
+    }
+    if (button.classList.contains("Space")) {
+      button.classList.add(
+        "keyboard__button_widest",
+        "keyboard__button_dark"
+      );
+    }
+    if (
+      button.classList.contains("Tab") ||
+      button.classList.contains("Delete") ||
+      button.classList.contains("ControlLeft") ||
+      button.classList.contains("ControlRight") ||
+      button.classList.contains("MetaLeft") ||
+      button.classList.contains("AltLeft") ||
+      button.classList.contains("AltRight")
+    ) {
+      button.classList.add("keyboard__button", "keyboard__button_dark");
+    } else {
+      button.classList.add("keyboard__button");
+    }
+    // const lineBreak =
+    //   ["Backspace", "Delete", "Enter", "ShiftRight"].indexOf(button) !== -1;
+    //   if(lineBreak) {
+
+    //   }
   return button;
 };
 
@@ -214,8 +221,14 @@ const generateButton = (btn) => {
 const renderContainer = () => {
   const pageContent = new PageKeyboard();
   pageContent.buildElements();
+  setAttribute();
   // return pageContent;
 };
+const setAttribute = () => {
+let textarea = document.querySelector(".page__textarea");
+textarea.setAttribute("row", "5");
+textarea.setAttribute("cols", "50");
+}
 const getKeyboardContainer = () => {
   const keyboard = document.querySelector('.page__keyboard');
   keyboard.innerHTML = '';
