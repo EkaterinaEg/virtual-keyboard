@@ -64,6 +64,7 @@ const initialData = [
   { eventCode: 'ArrowRight', eventKey: '►' },
   { eventCode: 'ControlRight', eventKey: 'Ctrl' },
 ];
+const textButtons = ['Tab', 'CapsLock', 'Shift', 'Control', 'Meta', 'Alt', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowRight', 'Shift', 'Enter', 'Backspace', 'Delete'];
 // const data = [
 //   "`",
 //   "1",
@@ -208,11 +209,7 @@ const generateButton = (btn) => {
   //   }
   return button;
 };
-function init() {
-  renderContainer();
-  renderButtons();
-  setAttribute();
-};
+
 //   generateButtons() {
 //     let buttonboard = document.createElement("div");
 //     buttonboard.className = "buttonboard";
@@ -229,8 +226,6 @@ const setAttribute = () => {
   textarea.setAttribute('row', '5');
   textarea.setAttribute('cols', '50');
 };
-
-
 
 const getKeyboardContainer = () => {
   const keyboard = document.querySelector('.page__keyboard');
@@ -256,58 +251,31 @@ function init() {
   renderContainer();
   renderButtons();
   setAttribute();
-};
+}
 
 init();
 
+const but = [];
+document.onkeydown = function (event) {
+  but.push(`eventCode: ${event.code}, eventKey: ${event.key}`);
+};
+console.log(but);
 
-// init();
-// functionality
-// let but = []
-// document.onkeydown = function(event) {
-// but.push(`eventCode: ${event.code}, eventKey: ${event.key}`);
-// }
-// console.log(but);
-
-const buttons = document.querySelectorAll(".button");
+const buttons = document.querySelectorAll('.button');
 // console.log(buttons);
 const textarea = document.querySelector('.page__textarea');
-// console.log(textarea);
 
-// console.log(document.querySelector(".KeyF"));
-// console.log(document.querySelector(".event.code"));
-document.body.addEventListener('keydown', function(event) {
-
-
-  document.querySelector(`.${event.code}`).classList.add("active");
-  
+window.addEventListener('keydown', (event) => {
+  // console.log(event.code);
+  document.querySelector(`.${event.code}`).classList.add('active');
+  if (!textButtons.includes(event.key)) {
+    textarea.innerHTML += event.key;
+  }
 });
-document.body.addEventListener('keyup', function(event) {
 
-  buttons.forEach(function (element) {
-    element.classList.remove("active");
+window.addEventListener('keyup', (event) => {
+  buttons.forEach((element) => {
+    element.classList.remove('active');
   });
-  document.querySelector(`.${event.code}`).classList.remove("active");
-  
+  document.querySelector(`.${event.code}`).classList.remove('active');
 });
-  //  for (let i=0 ; i <buttons.length ; i++) {
-  //   buttons[i].classList.add("active");
-
-    // console.log(buttons[0]);
- //UpperCase() method returns the value of the string converted to uppercase
-      // if(buttons[i].innerHTML == index.key.toUpperCase()){
-      //     buttons[i].classList.add('active')
-      // };
-  
-// textarea.innerHTML += index.key
-//   if(index.key =='Backspace'){
-//     textarea.innerHTML=textarea.innerHTML.slice(0 , -10)
-//   }
-// })
-// window.addEventListener('keyup' , function(index){
-//   for(let j=0 ; j<buttons.length ; j++){
-//       if(buttons[j].innerHTML == index.key.toUpperCase()){
-//           buttons[j].classList.remove('active')
-//       }
-//   }
-// });
