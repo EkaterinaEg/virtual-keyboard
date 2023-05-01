@@ -57,14 +57,15 @@ const initialData = [
   { eventCode: 'ControlLeft', eventKey: 'Ctrl' },
   { eventCode: 'MetaLeft', eventKey: 'Win' },
   { eventCode: 'AltLeft', eventKey: 'Alt' },
-  { eventCode: 'Space', eventKey: 'Space' },
+  { eventCode: 'Space', eventKey: ' ' },
   { eventCode: 'AltRight', eventKey: 'Alt' },
   { eventCode: 'ArrowLeft', eventKey: '◄' },
   { eventCode: 'ArrowDown', eventKey: '▼' },
   { eventCode: 'ArrowRight', eventKey: '►' },
   { eventCode: 'ControlRight', eventKey: 'Ctrl' },
 ];
-const textButtons = ['Tab', 'CapsLock', 'Shift', 'Control', 'Meta', 'Alt', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowRight', 'Shift', 'Enter', 'Backspace', 'Delete'];
+
+const textButtons = ['ArrowRight', 'ArrowLeft', 'ArrowDown', 'ArrowUp', 'Tab', 'CapsLock', 'Shift', 'Control', 'Meta', 'Alt', 'Shift', 'Enter', 'Backspace', 'Delete', 'Del', 'Ctrl', 'Win', 'Space'];
 // const data = [
 //   "`",
 //   "1",
@@ -251,26 +252,91 @@ function init() {
   renderContainer();
   renderButtons();
   setAttribute();
+  document.querySelector('.page__textarea').focus();
 }
 
 init();
+// window.onload = function() {
+//   renderContainer();
+//   renderButtons();
+//   setAttribute();
 
-const but = [];
-document.onkeydown = function (event) {
-  but.push(`eventCode: ${event.code}, eventKey: ${event.key}`);
-};
-console.log(but);
+// const but = [];
+// document.onkeydown = function (event) {
+//   but.push(`eventCode: ${event.code}, eventKey: ${event.key}`);
+// };
+// console.log(but);
 
 const buttons = document.querySelectorAll('.button');
 // console.log(buttons);
 const textarea = document.querySelector('.page__textarea');
+// const keyboard = document.querySelector('.page__keyboard');
+const capsLock = document.querySelector('.CapsLock');
+
+// document.body.addEventListener("click", () => {
+//   textarea.focus();
+// });
+// Keybord button press
 
 window.addEventListener('keydown', (event) => {
+  event.preventDefault();
+  buttons.forEach((element) => {
+    element.classList.remove('active');
+  });
   // console.log(event.code);
   document.querySelector(`.${event.code}`).classList.add('active');
+
+  // console.log(textarea.selectionStart);
+  // }
   if (!textButtons.includes(event.key)) {
-    textarea.innerHTML += event.key;
+    // console.log(textarea.innerHTML);
+    textarea.value = textarea.value.slice(0, textarea.selectionStart)
+    + event.key + textarea.value.slice(textarea.selectionEnd);
   }
+  if (event.code === 'Tab') {
+    textarea.value += '    ';
+  }
+  if (event.code === 'Backspace') {
+    const cursor = textarea.selectionStart;
+    textarea.selectionStart = textarea.selectionEnd;
+    textarea.value = textarea.value.slice(0, textarea.selectionStart - 1)
+    + textarea.value.slice(textarea.selectionEnd);
+    textarea.selectionStart = (cursor - 1);
+    textarea.selectionEnd = (cursor - 1);
+  }
+  if (event.code === 'CapsLock') {
+  // console.log('caps');
+    capsLock.classList.toggle('caps');
+  }
+  if (event.code === 'Enter') {
+    // console.log(event.code);
+    textarea.value += '\n';
+  }
+  if (event.code === 'Delete') {
+    const cursor = textarea.selectionStart;
+    textarea.selectionStart = textarea.selectionEnd;
+    textarea.value = textarea.value.slice(0, textarea.selectionStart)
+    + textarea.value.slice(textarea.selectionEnd + 1);
+    textarea.selectionStart = (cursor - 1);
+    textarea.selectionEnd = (cursor - 1);
+  }
+  if (event.code === 'ArrowLeft') {
+    textarea.value += '◄';
+  }
+  if (event.code === 'ArrowRight') {
+    textarea.value += '►';
+  }
+  if (event.code === 'ArrowUp') {
+    textarea.value += '▲';
+  }
+  if (event.code === 'ArrowDown') {
+    textarea.value += '▼';
+  }
+
+  // if (event.code === 'ShiftLeft' && event.code.startsWith('Key')) {
+  //   // console.log(event.code);
+  //   textarea.value += event.key.toUpperCase()
+  // };
 });
 
 window.addEventListener('keyup', (event) => {
@@ -279,3 +345,102 @@ window.addEventListener('keyup', (event) => {
   });
   document.querySelector(`.${event.code}`).classList.remove('active');
 });
+
+// buttons.forEach((element) => {
+//   element.addEventListener('click', function() {
+//     console.log('hi');
+//   })
+//   element.classList.remove('active');
+//   // element.classList.remove('active');
+//   element.addEventListener('click', (event) => {
+//     event.target.classList.add('active')
+//   //   buttons.forEach((element) => {
+//   //     element.classList.remove('active');
+//   //   })
+//   // element.classList.add('active')
+//     })
+//   })
+// let cur = event.target;
+// console.log("mousedown");
+// console.log(cur);
+// // console.log(event.code);
+// cur.classList.add('active');
+// console.log(element.textContent);
+// console.log(document.querySelector(`.${event.code}`));
+// if (!textButtons.includes(event.key)) {
+//   textarea.innerHTML += event.key;
+// }
+
+// buttons.forEach((element) => {
+//   element.addEventListener('mouseup', (event) => {
+//     let cur = document.querySelector(".active")
+//     console.log('mouseup');
+//  console.log(cur);
+//     cur.classList.remove('active')
+//     let cur = document.querySelector('.active');
+//     // console.log(cur);
+//     cur.classList.remove('active');
+// //     // console.log(element.textContent);
+// //     // console.log(document.querySelector(`.${event.code}`));
+// //     // if (!textButtons.includes(event.key)) {
+// //     //   textarea.innerHTML += event.key;
+// //     // }
+
+// keyboard.addEventListener('mousedown', (event) => {
+//   buttons.forEach((element) => {
+//     element.classList.remove('active');
+//   });
+//   document.querySelector('.event.target.textContent').classList.remove('active');
+// });
+// buttons.forEach(element =>
+// element.addEventListener('mousedown', function() {
+// element.classList.add('active');
+// if (!textButtons.includes(element.textContent)) {
+//         textarea.innerHTML += element.textContent;
+//       }
+// });
+// element.addEventListener('mouseup', function() {
+//   element.classList.remove('active');
+// });)
+// buttons.forEach(element =>
+//   element.addEventListener('mouseup', function() {
+//   element.classList.remove('active');
+//   })
+//   );
+// event.target.classList.remove('active'));
+// this.addclass('active')
+// keyboard.addEventListener('mouseup', (event) =>
+// event.target.classList.remove('active'));
+// buttons.forEach((element) => {
+
+//     element.classList.remove("active");
+
+//   element.addEventListener('click', (event) => {
+//     // console.log(event.target);
+//     // event.target.classList.remove("active");
+//     // buttons.forEach(el => el.classList.remove('active'));
+//     event.target.classList.toggle('active');
+
+//      if (!textButtons.includes(event.target.textContent)) {
+//       textarea.innerHTML += event.target.textContent;
+//     }
+//   });
+//        // console.log(event.target);
+//       // buttons.forEach(el => el.classList.remove('active'))
+//       // console.log(event.target);
+//     // event.target.classList.add("active");
+//     // if(event.target.classList.contains("active")) {
+//     //   event.tarfet.classList.remove('active')
+//     // }
+
+//   });
+// if(element.classList.contains("active")) {
+//  element.classList.remove("active")
+// }
+
+// buttons.forEach(el =>
+//   el.addEventListener('click', function(event) {
+//     console.log(event.target);
+//   }
+
+//   ))
