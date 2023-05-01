@@ -1,137 +1,72 @@
+// eslint-disable-next-line max-classes-per-file
 const initialData = [
-  { eventCode: 'Backquote', eventKey: '`' },
-  { eventCode: 'Digit1', eventKey: '1' },
-  { eventCode: 'Digit2', eventKey: '2' },
-  { eventCode: 'Digit3', eventKey: '3' },
-  { eventCode: 'Digit4', eventKey: '4' },
-  { eventCode: 'Digit5', eventKey: '5' },
-  { eventCode: 'Digit6', eventKey: '6' },
-  { eventCode: 'Digit7', eventKey: '7' },
-  { eventCode: 'Digit8', eventKey: '8' },
-  { eventCode: 'Digit9', eventKey: '9' },
-  { eventCode: 'Digit0', eventKey: '0' },
-  { eventCode: 'Minus', eventKey: '-' },
-  { eventCode: 'Equal', eventKey: '=' },
-  { eventCode: 'Backspace', eventKey: 'Backspace' },
-  { eventCode: 'Tab', eventKey: 'Tab' },
-  { eventCode: 'KeyQ', eventKey: 'q' },
-  { eventCode: 'KeyW', eventKey: 'w' },
-  { eventCode: 'KeyE', eventKey: 'e' },
-  { eventCode: 'KeyR', eventKey: 'r' },
-  { eventCode: 'KeyT', eventKey: 't' },
-  { eventCode: 'KeyY', eventKey: 'y' },
-  { eventCode: 'KeyU', eventKey: 'u' },
-  { eventCode: 'KeyI', eventKey: 'i' },
-  { eventCode: 'KeyO', eventKey: 'o' },
-  { eventCode: 'KeyP', eventKey: 'p' },
-  { eventCode: 'BracketLeft', eventKey: '[' },
-  { eventCode: 'BracketRight', eventKey: ']' },
-  { eventCode: 'Backslash', eventKey: '\\' },
-  { eventCode: 'Delete', eventKey: 'Del' },
-  { eventCode: 'CapsLock', eventKey: 'CapsLock' },
-  { eventCode: 'KeyA', eventKey: 'a' },
-  { eventCode: 'KeyS', eventKey: 's' },
-  { eventCode: 'KeyD', eventKey: 'd' },
-  { eventCode: 'KeyF', eventKey: 'f' },
-  { eventCode: 'KeyG', eventKey: 'g' },
-  { eventCode: 'KeyH', eventKey: 'h' },
-  { eventCode: 'KeyJ', eventKey: 'j' },
-  { eventCode: 'KeyK', eventKey: 'k' },
-  { eventCode: 'KeyL', eventKey: 'l' },
-  { eventCode: 'Semicolon', eventKey: ';' },
-  { eventCode: 'Quote', eventKey: "'" },
-  { eventCode: 'Enter', eventKey: 'Enter' },
-  { eventCode: 'ShiftLeft', eventKey: 'Shift' },
-  { eventCode: 'KeyZ', eventKey: 'z' },
-  { eventCode: 'KeyX', eventKey: 'x' },
-  { eventCode: 'KeyC', eventKey: 'c' },
-  { eventCode: 'KeyV', eventKey: 'v' },
-  { eventCode: 'KeyB', eventKey: 'b' },
-  { eventCode: 'KeyN', eventKey: 'n' },
-  { eventCode: 'KeyM', eventKey: 'm' },
-  { eventCode: 'Comma', eventKey: ',' },
-  { eventCode: 'Period', eventKey: '.' },
-  { eventCode: 'Slash', eventKey: '/' },
-  { eventCode: 'ArrowUp', eventKey: '▲' },
-  { eventCode: 'ShiftRight', eventKey: 'Shift' },
-  { eventCode: 'ControlLeft', eventKey: 'Ctrl' },
-  { eventCode: 'MetaLeft', eventKey: 'Win' },
-  { eventCode: 'AltLeft', eventKey: 'Alt' },
-  { eventCode: 'Space', eventKey: ' ' },
-  { eventCode: 'AltRight', eventKey: 'Alt' },
-  { eventCode: 'ArrowLeft', eventKey: '◄' },
-  { eventCode: 'ArrowDown', eventKey: '▼' },
-  { eventCode: 'ArrowRight', eventKey: '►' },
-  { eventCode: 'ControlRight', eventKey: 'Ctrl' },
+  { eventCode: 'Backquote', eventKey: '`', shiftKey: '~' },
+  { eventCode: 'Digit1', eventKey: '1', shiftKey: '!' },
+  { eventCode: 'Digit2', eventKey: '2', shiftKey: '@' },
+  { eventCode: 'Digit3', eventKey: '3', shiftKey: '#' },
+  { eventCode: 'Digit4', eventKey: '4', shiftKey: '$' },
+  { eventCode: 'Digit5', eventKey: '5', shiftKey: '%' },
+  { eventCode: 'Digit6', eventKey: '6', shiftKey: '^' },
+  { eventCode: 'Digit7', eventKey: '7', shiftKey: '&' },
+  { eventCode: 'Digit8', eventKey: '8', shiftKey: '*' },
+  { eventCode: 'Digit9', eventKey: '9', shiftKey: '(' },
+  { eventCode: 'Digit0', eventKey: '0', shiftKey: ')' },
+  { eventCode: 'Minus', eventKey: '-', shiftKey: '_' },
+  { eventCode: 'Equal', eventKey: '=', shiftKey: '+' },
+  { eventCode: 'Backspace', eventKey: 'Backspace', shiftKey: 'Backspace' },
+  { eventCode: 'Tab', eventKey: 'Tab', shiftKey: 'Tab' },
+  { eventCode: 'KeyQ', eventKey: 'q', shiftKey: 'Q' },
+  { eventCode: 'KeyW', eventKey: 'w', shiftKey: 'W' },
+  { eventCode: 'KeyE', eventKey: 'e', shiftKey: 'E' },
+  { eventCode: 'KeyR', eventKey: 'r', shiftKey: 'R' },
+  { eventCode: 'KeyT', eventKey: 't', shiftKey: 'T' },
+  { eventCode: 'KeyY', eventKey: 'y', shiftKey: 'Y' },
+  { eventCode: 'KeyU', eventKey: 'u', shiftKey: 'U' },
+  { eventCode: 'KeyI', eventKey: 'i', shiftKey: 'I' },
+  { eventCode: 'KeyO', eventKey: 'o', shiftKey: 'O' },
+  { eventCode: 'KeyP', eventKey: 'p', shiftKey: 'P' },
+  { eventCode: 'BracketLeft', eventKey: '[', shiftKey: '{' },
+  { eventCode: 'BracketRight', eventKey: ']', shiftKey: '}' },
+  { eventCode: 'Backslash', eventKey: '\\', shiftKey: '|' },
+  { eventCode: 'Delete', eventKey: 'Del', shiftKey: 'Del' },
+  { eventCode: 'CapsLock', eventKey: 'CapsLock', shiftKey: 'CapsLock' },
+  { eventCode: 'KeyA', eventKey: 'a', shiftKey: 'A' },
+  { eventCode: 'KeyS', eventKey: 's', shiftKey: 'S' },
+  { eventCode: 'KeyD', eventKey: 'd', shiftKey: 'D' },
+  { eventCode: 'KeyF', eventKey: 'f', shiftKey: 'F' },
+  { eventCode: 'KeyG', eventKey: 'g', shiftKey: 'G' },
+  { eventCode: 'KeyH', eventKey: 'h', shiftKey: 'H' },
+  { eventCode: 'KeyJ', eventKey: 'j', shiftKey: 'J' },
+  { eventCode: 'KeyK', eventKey: 'k', shiftKey: 'K' },
+  { eventCode: 'KeyL', eventKey: 'l', shiftKey: 'L' },
+  { eventCode: 'Semicolon', eventKey: ';', shiftKey: ':' },
+  { eventCode: 'Quote', eventKey: "'", shiftKey: '"' },
+  { eventCode: 'Enter', eventKey: 'Enter', shiftKey: 'Enter' },
+  { eventCode: 'ShiftLeft', eventKey: 'Shift', shiftKey: 'Shift' },
+  { eventCode: 'KeyZ', eventKey: 'z', shiftKey: 'Z' },
+  { eventCode: 'KeyX', eventKey: 'x', shiftKey: 'X' },
+  { eventCode: 'KeyC', eventKey: 'c', shiftKey: 'C' },
+  { eventCode: 'KeyV', eventKey: 'v', shiftKey: 'V' },
+  { eventCode: 'KeyB', eventKey: 'b', shiftKey: 'B' },
+  { eventCode: 'KeyN', eventKey: 'n', shiftKey: 'N' },
+  { eventCode: 'KeyM', eventKey: 'm', shiftKey: 'M' },
+  { eventCode: 'Comma', eventKey: ',', shiftKey: '<' },
+  { eventCode: 'Period', eventKey: '.', shiftKey: '>' },
+  { eventCode: 'Slash', eventKey: '/', shiftKey: '?' },
+  { eventCode: 'ArrowUp', eventKey: '▲', shiftKey: '?' },
+  { eventCode: 'ShiftRight', eventKey: 'Shift', shiftKey: 'Shift' },
+  { eventCode: 'ControlLeft', eventKey: 'Ctrl', shiftKey: 'Ctrl' },
+  { eventCode: 'MetaLeft', eventKey: 'Win', shiftKey: 'Win' },
+  { eventCode: 'AltLeft', eventKey: 'Alt', shiftKey: 'Alt' },
+  { eventCode: 'Space', eventKey: ' ', shiftKey: ' ' },
+  { eventCode: 'AltRight', eventKey: 'Alt', shiftKey: 'Alt' },
+  { eventCode: 'ArrowLeft', eventKey: '◄', shiftKey: '◄' },
+  { eventCode: 'ArrowDown', eventKey: '▼', shiftKey: '▼' },
+  { eventCode: 'ArrowRight', eventKey: '►', shiftKey: '►' },
+  { eventCode: 'ControlRight', eventKey: 'Ctrl', shiftKey: 'Ctrl' },
 ];
 
 const textButtons = ['ArrowRight', 'ArrowLeft', 'ArrowDown', 'ArrowUp', 'Tab', 'CapsLock', 'Shift', 'Control', 'Meta', 'Alt', 'Shift', 'Enter', 'Backspace', 'Delete', 'Del', 'Ctrl', 'Win', 'Space'];
-// const data = [
-//   "`",
-//   "1",
-//   "2",
-//   "3",
-//   "4",
-//   "5",
-//   "6",
-//   "7",
-//   "8",
-//   "9",
-//   "0",
-//   "-",
-//   "=",
-//   "Backspace",
-//   "Tab",
-//   "q",
-//   "w",
-//   "e",
-//   "r",
-//   "t",
-//   "y",
-//   "u",
-//   "i",
-//   "o",
-//   "p",
-//   "[",
-//   "]",
-//   "\\",
-//   "Del",
-//   "Capslock",
-//   "a",
-//   "s",
-//   "d",
-//   "f",
-//   "g",
-//   "h",
-//   "j",
-//   "k",
-//   "l",
-//   ";",
-//   "'",
-//   "Enter",
-//   "Shift",
-//   "z",
-//   "x",
-//   "c",
-//   "v",
-//   "b",
-//   "n",
-//   "m",
-//   ",",
-//   ".",
-//   "/",
-//   "arup",
-//   "Shift",
-//   "Ctrl",
-//   "Win",
-//   "Alt",
-//   "Space",
-//   "Alt",
-//   "arleft",
-//   "arbot",
-//   "arright",
-//   "Ctrl",
-// ];
 
 class PageKeyboard {
   constructor() {
@@ -174,7 +109,8 @@ const generateButton = (btn) => {
   const button = document.createElement('button');
   button.className = `button ${btn.eventCode}`;
   button.setAttribute('type', 'button');
-  button.innerHTML = `${btn.eventKey}`;
+  // button.innerHTML = `${btn.eventKey}`;
+
   if (
     button.classList.contains('Backspace')
     || button.classList.contains('Enter')
@@ -203,20 +139,9 @@ const generateButton = (btn) => {
   } else {
     button.classList.add('keyboard__button');
   }
-  // const lineBreak =
-  //   ["Backspace", "Delete", "Enter", "ShiftRight"].indexOf(button) !== -1;
-  //   if(lineBreak) {
-
-  //   }
   return button;
 };
 
-//   generateButtons() {
-//     let buttonboard = document.createElement("div");
-//     buttonboard.className = "buttonboard";
-
-//     // Creates HTML for an icon
-//
 const renderContainer = () => {
   const pageContent = new PageKeyboard();
   pageContent.buildElements();
@@ -256,27 +181,54 @@ function init() {
 }
 
 init();
-// window.onload = function() {
-//   renderContainer();
-//   renderButtons();
-//   setAttribute();
 
-// const but = [];
-// document.onkeydown = function (event) {
-//   but.push(`eventCode: ${event.code}, eventKey: ${event.key}`);
-// };
-// console.log(but);
+class KeyboardLang {
+  constructor({ eventCode, eventKey, shiftKey }) {
+    this.eventCode = eventCode;
+    this.eventKey = eventKey;
+    this.shiftKey = shiftKey;
+  }
+
+  generateEngElements() {
+    let template = '';
+    const engKeyboard = document.createElement('span');
+    engKeyboard.className = 'eng';
+
+    // eslint-disable-next-line no-unused-expressions
+    this.eventKey
+    && (template += `<span class="elDown">${this.eventKey}</span>`);
+
+    // eslint-disable-next-line no-unused-expressions
+    this.shiftKey
+    && (template += `<span class="shiftDown hidden">${this.shiftKey}</span>`);
+
+    template += '</span>';
+    engKeyboard.innerHTML = template;
+    return engKeyboard;
+  }
+}
+
+const generateKeyboard = (data) => {
+  const keyboards = [];
+  data.forEach((el) => {
+    keyboards.push(new KeyboardLang(el));
+  });
+  return keyboards;
+  // console.log(keyboards);
+};
+
+const renderKeyboardsToDom = () => {
+  generateKeyboard(initialData).forEach((el) => document.querySelectorAll('.button').forEach((element) => {
+    if (element.classList.contains(el.eventCode)) {
+      element.append(el.generateEngElements());
+    }
+  }));
+};
+renderKeyboardsToDom();
 
 const buttons = document.querySelectorAll('.button');
-// console.log(buttons);
 const textarea = document.querySelector('.page__textarea');
-// const keyboard = document.querySelector('.page__keyboard');
 const capsLock = document.querySelector('.CapsLock');
-
-// document.body.addEventListener("click", () => {
-//   textarea.focus();
-// });
-// Keybord button press
 
 window.addEventListener('keydown', (event) => {
   event.preventDefault();
@@ -286,23 +238,39 @@ window.addEventListener('keydown', (event) => {
   // console.log(event.code);
   document.querySelector(`.${event.code}`).classList.add('active');
 
-  // console.log(textarea.selectionStart);
-  // }
+  const cursor = textarea.selectionStart;
+
   if (!textButtons.includes(event.key)) {
     // console.log(textarea.innerHTML);
+    // const cursor = textarea.selectionStart;
+
     textarea.value = textarea.value.slice(0, textarea.selectionStart)
     + event.key + textarea.value.slice(textarea.selectionEnd);
+
+    textarea.selectionStart = cursor + 1;
+
+    textarea.selectionEnd = textarea.selectionStart;
   }
   if (event.code === 'Tab') {
-    textarea.value += '    ';
+    if (textarea.selectionStart === textarea.value.length) {
+      textarea.value += '    ';
+    } else {
+      textarea.value = `${textarea.value.slice(0, textarea.selectionStart)
+      }    ${textarea.value.slice(textarea.selectionEnd)}`;
+      textarea.selectionStart = cursor;
+    }
+
+    textarea.selectionEnd = textarea.selectionStart;
   }
   if (event.code === 'Backspace') {
-    const cursor = textarea.selectionStart;
+    // const cursor = textarea.selectionStart;
     textarea.selectionStart = textarea.selectionEnd;
+
     textarea.value = textarea.value.slice(0, textarea.selectionStart - 1)
     + textarea.value.slice(textarea.selectionEnd);
+
     textarea.selectionStart = (cursor - 1);
-    textarea.selectionEnd = (cursor - 1);
+    textarea.selectionEnd = textarea.selectionStart;
   }
   if (event.code === 'CapsLock') {
   // console.log('caps');
@@ -310,137 +278,150 @@ window.addEventListener('keydown', (event) => {
   }
   if (event.code === 'Enter') {
     // console.log(event.code);
-    textarea.value += '\n';
+    if (textarea.selectionStart === textarea.value.length) {
+      textarea.value += '\n';
+    } else {
+      textarea.value = `${textarea.value.slice(0, textarea.selectionStart)
+      }\n${textarea.value.slice(textarea.selectionEnd)}`;
+    }
+
+    textarea.selectionStart = (cursor + 50);
+    textarea.selectionEnd = textarea.selectionStart;
   }
   if (event.code === 'Delete') {
-    const cursor = textarea.selectionStart;
     textarea.selectionStart = textarea.selectionEnd;
+
     textarea.value = textarea.value.slice(0, textarea.selectionStart)
     + textarea.value.slice(textarea.selectionEnd + 1);
-    textarea.selectionStart = (cursor - 1);
-    textarea.selectionEnd = (cursor - 1);
+
+    textarea.selectionStart = (cursor);
+    textarea.selectionEnd = textarea.selectionStart;
   }
   if (event.code === 'ArrowLeft') {
-    textarea.value += '◄';
+    textarea.value = `${textarea.value.slice(0, textarea.selectionStart)
+    }◄${textarea.value.slice(textarea.selectionEnd)}`;
+
+    textarea.selectionStart = cursor + 1;
+    textarea.selectionEnd = textarea.selectionStart;
+    // textarea.value += '◄';
   }
   if (event.code === 'ArrowRight') {
-    textarea.value += '►';
+    // textarea.value += '►';
+    textarea.value = `${textarea.value.slice(0, textarea.selectionStart)
+    }►${textarea.value.slice(textarea.selectionEnd)}`;
+
+    textarea.selectionStart = cursor + 1;
+    textarea.selectionEnd = textarea.selectionStart;
   }
   if (event.code === 'ArrowUp') {
-    textarea.value += '▲';
+    // textarea.value += '▲';
+    textarea.value = `${textarea.value.slice(0, textarea.selectionStart)
+    }▲${textarea.value.slice(textarea.selectionEnd)}`;
+
+    textarea.selectionStart = cursor + 1;
+    textarea.selectionEnd = textarea.selectionStart;
   }
   if (event.code === 'ArrowDown') {
-    textarea.value += '▼';
-  }
+    // textarea.value += '▼';
+    textarea.value = `${textarea.value.slice(0, textarea.selectionStart)
+    }▼${textarea.value.slice(textarea.selectionEnd)}`;
 
-  // if (event.code === 'ShiftLeft' && event.code.startsWith('Key')) {
-  //   // console.log(event.code);
-  //   textarea.value += event.key.toUpperCase()
-  // };
+    textarea.selectionStart = cursor + 1;
+    textarea.selectionEnd = textarea.selectionStart;
+  }
 });
+
+// ______________________________________Keyup implementation
 
 window.addEventListener('keyup', (event) => {
   buttons.forEach((element) => {
     element.classList.remove('active');
   });
+
   document.querySelector(`.${event.code}`).classList.remove('active');
 });
 
-// buttons.forEach((element) => {
-//   element.addEventListener('click', function() {
-//     console.log('hi');
-//   })
-//   element.classList.remove('active');
-//   // element.classList.remove('active');
-//   element.addEventListener('click', (event) => {
-//     event.target.classList.add('active')
-//   //   buttons.forEach((element) => {
-//   //     element.classList.remove('active');
-//   //   })
-//   // element.classList.add('active')
-//     })
-//   })
-// let cur = event.target;
-// console.log("mousedown");
-// console.log(cur);
-// // console.log(event.code);
-// cur.classList.add('active');
-// console.log(element.textContent);
-// console.log(document.querySelector(`.${event.code}`));
-// if (!textButtons.includes(event.key)) {
-//   textarea.innerHTML += event.key;
-// }
+// mouse click
+buttons.forEach((element) => element.addEventListener('click', (event) => {
+  event.preventDefault();
+  textarea.focus();
 
-// buttons.forEach((element) => {
-//   element.addEventListener('mouseup', (event) => {
-//     let cur = document.querySelector(".active")
-//     console.log('mouseup');
-//  console.log(cur);
-//     cur.classList.remove('active')
-//     let cur = document.querySelector('.active');
-//     // console.log(cur);
-//     cur.classList.remove('active');
-// //     // console.log(element.textContent);
-// //     // console.log(document.querySelector(`.${event.code}`));
-// //     // if (!textButtons.includes(event.key)) {
-// //     //   textarea.innerHTML += event.key;
-// //     // }
+  const cursor = textarea.selectionStart;
+  textarea.selectionStart = textarea.selectionEnd;
 
-// keyboard.addEventListener('mousedown', (event) => {
-//   buttons.forEach((element) => {
-//     element.classList.remove('active');
-//   });
-//   document.querySelector('.event.target.textContent').classList.remove('active');
-// });
-// buttons.forEach(element =>
-// element.addEventListener('mousedown', function() {
-// element.classList.add('active');
-// if (!textButtons.includes(element.textContent)) {
-//         textarea.innerHTML += element.textContent;
-//       }
-// });
-// element.addEventListener('mouseup', function() {
-//   element.classList.remove('active');
-// });)
-// buttons.forEach(element =>
-//   element.addEventListener('mouseup', function() {
-//   element.classList.remove('active');
-//   })
-//   );
-// event.target.classList.remove('active'));
-// this.addclass('active')
-// keyboard.addEventListener('mouseup', (event) =>
-// event.target.classList.remove('active'));
-// buttons.forEach((element) => {
+  buttons.forEach((el) => {
+    el.classList.remove('active');
+  });
+  event.currentTarget.closest('.button').classList.add('active');
 
-//     element.classList.remove("active");
+  const val = event.currentTarget.firstChild.firstChild.textContent;
+  //  const valHidden = event.currentTarget.firstChild.lastChild.textContent;
 
-//   element.addEventListener('click', (event) => {
-//     // console.log(event.target);
-//     // event.target.classList.remove("active");
-//     // buttons.forEach(el => el.classList.remove('active'));
-//     event.target.classList.toggle('active');
+  if (!textButtons.includes(val)) {
+    if (document.querySelector('.CapsLock').classList.contains('caps')
+    || document.querySelector('.ShiftLeft').classList.contains('caps')
+    || document.querySelector('.ShiftRight').classList.contains('caps')) {
+      textarea.value = textarea.value.slice(0, textarea.selectionStart)
+    + val.toUpperCase() + textarea.value.slice(textarea.selectionEnd);
+    } else {
+      textarea.value = textarea.value.slice(0, textarea.selectionStart)
+      + val + textarea.value.slice(textarea.selectionEnd);
+    }
 
-//      if (!textButtons.includes(event.target.textContent)) {
-//       textarea.innerHTML += event.target.textContent;
-//     }
-//   });
-//        // console.log(event.target);
-//       // buttons.forEach(el => el.classList.remove('active'))
-//       // console.log(event.target);
-//     // event.target.classList.add("active");
-//     // if(event.target.classList.contains("active")) {
-//     //   event.tarfet.classList.remove('active')
-//     // }
+    textarea.selectionStart = cursor + 1;
+    textarea.selectionEnd = textarea.selectionStart;
+  }
 
-//   });
-// if(element.classList.contains("active")) {
-//  element.classList.remove("active")
-// }
+  if (val === 'Tab') {
+    if (textarea.selectionStart === textarea.value.length) {
+      textarea.value += '    ';
+    } else {
+      textarea.value = `${textarea.value.slice(0, textarea.selectionStart)
+      }    ${textarea.value.slice(textarea.selectionEnd)}`;
+      textarea.selectionStart = cursor;
+    }
 
-// buttons.forEach(el =>
-//   el.addEventListener('click', function(event) {
-//     console.log(event.target);
-//   }
+    textarea.selectionEnd = textarea.selectionStart;
+  }
+  if (val === 'Backspace') {
+    textarea.value = textarea.value.slice(0, textarea.selectionStart - 1)
+    + textarea.value.slice(textarea.selectionEnd);
 
-//   ))
+    textarea.selectionStart = (cursor - 1);
+    textarea.selectionEnd = textarea.selectionStart;
+  }
+  if (val === 'CapsLock') {
+    // console.log('caps');
+    capsLock.classList.toggle('caps');
+    document.querySelector('.ShiftRight').classList.remove('caps');
+    document.querySelector('.ShiftLeft').classList.remove('caps');
+  }
+  if (val === 'Enter') {
+    if (textarea.selectionStart === textarea.value.length) {
+      textarea.value += '\n';
+    } else {
+      textarea.value = `${textarea.value.slice(0, textarea.selectionStart)
+      }\n${textarea.value.slice(textarea.selectionEnd)}`;
+    }
+
+    textarea.selectionStart = (cursor + 50);
+    textarea.selectionEnd = textarea.selectionStart;
+  }
+  if (val === 'Del') {
+    textarea.value = textarea.value.slice(0, textarea.selectionStart)
+    + textarea.value.slice(textarea.selectionEnd + 1);
+
+    textarea.selectionStart = (cursor);
+    textarea.selectionEnd = textarea.selectionStart;
+  }
+  if (event.currentTarget.classList.contains('ShiftLeft')) {
+    document.querySelector('.ShiftLeft').classList.toggle('caps');
+    document.querySelector('.CapsLock').classList.remove('caps');
+    document.querySelector('.ShiftRight').classList.remove('caps');
+  }
+  if (event.currentTarget.classList.contains('ShiftRight')) {
+    document.querySelector('.ShiftRight').classList.toggle('caps');
+    document.querySelector('.CapsLock').classList.remove('caps');
+    document.querySelector('.ShiftLeft').classList.remove('caps');
+  }
+}));
