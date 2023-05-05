@@ -4,20 +4,17 @@ import {
   engData, rusData, letters, textButtons,
 } from './js/data.js';
 
-const cookies = document.cookie.split('; ');
-let initialLanguage;
+let pageLanguage;
 
-let pageLanguage = cookies.find((cookie) => cookie.startsWith('lang'));
-pageLanguage = pageLanguage ? pageLanguage.split('=')[1] : null;
-// console.log(pageLanguage);
-pageLanguage = pageLanguage ?? initialLanguage;
+const localStorageLanguage = window.localStorage.getItem('lang');
 
-if (pageLanguage === 'eng') {
-  initialLanguage = engData;
-} else if (pageLanguage === 'rus') {
-  initialLanguage = rusData;
+if (!localStorageLanguage) {
+  window.localStorage.setItem('lang', 'rus');
+
+  pageLanguage = 'rus';
+} else {
+  pageLanguage = localStorageLanguage;
 }
-
 // ____________________________________________________________________________
 const generateButton = (btn) => {
   const button = document.createElement('button');
@@ -104,10 +101,10 @@ const renderKeyboardsToDom = () => {
         element.append(el.generateEngElements());
         document.querySelector('.page__langLabel').innerHTML = 'EN';
         document.querySelector('.page__title').innerHTML = 'Virtual Keyboard';
+        document.querySelector('.page__shortcut').innerHTML = 'Use Ctrl + Alt to change language';
       }
     }));
-    initialLanguage = engData;
-    document.cookie = 'lang=eng';
+    pageLanguage = 'eng';
   } else if (pageLanguage === 'rus') {
     generateKeyboard(rusData).forEach((el) => document.querySelectorAll('.button').forEach((element) => {
       if (element.classList.contains(el.eventCode)) {
@@ -116,20 +113,24 @@ const renderKeyboardsToDom = () => {
         element.append(el.generateRusElements());
         document.querySelector('.page__langLabel').innerHTML = 'RU';
         document.querySelector('.page__title').innerHTML = 'Виртуальная клавиатура';
+        document.querySelector('.page__shortcut').innerHTML = 'Для переключения языка Ctrl + Alt';
       }
     }));
-    initialLanguage = rusData;
-    document.cookie = 'lang=rus';
+    pageLanguage = 'rus';
   }
 };
 
 renderKeyboardsToDom();
 // ______________________________________change language
 const changeLanguage = () => {
-  if (pageLanguage === 'rus') {
-    pageLanguage = 'eng';
-  } else {
+  if (pageLanguage === 'eng') {
     pageLanguage = 'rus';
+    window.localStorage.clear();
+    window.localStorage.setItem('lang', 'rus');
+  } else {
+    pageLanguage = 'eng';
+    window.localStorage.clear();
+    window.localStorage.setItem('lang', 'eng');
   }
   renderKeyboardsToDom();
 };
@@ -140,7 +141,7 @@ const capsLock = document.querySelector('.CapsLock');
 const shiftLeft = document.querySelector('.ShiftLeft');
 const shiftRight = document.querySelector('.ShiftRight');
 
-function layoutShiftLeftPressed() {
+function ShiftLeftPressed() {
   shiftLeft.classList.toggle('caps');
   capsLock.classList.remove('caps');
   shiftRight.classList.remove('caps');
@@ -160,7 +161,7 @@ function layoutShiftLeftPressed() {
     });
   }
 }
-function layoutShiftRightPressed() {
+function ShiftRightPressed() {
   shiftRight.classList.toggle('caps');
   capsLock.classList.remove('caps');
   shiftLeft.classList.remove('caps');
@@ -289,13 +290,12 @@ document.addEventListener('keydown', (event) => {
     capsLock.classList.remove('caps');
     shiftRight.classList.remove('caps');
     shiftLeft.classList.remove('caps');
-
   }
   if (event.code === 'ShiftLeft') {
-    layoutShiftLeftPressed();
+    ShiftLeftPressed();
   }
   if (event.code === 'ShiftRight') {
-    layoutShiftRightPressed();
+    ShiftRightPressed();
   }
   if (event.code === 'CapsLock') {
     capsLockPressed();
@@ -329,10 +329,10 @@ buttons.forEach((element) => element.addEventListener('click', (event) => {
   logic();
 
   if (event.currentTarget.classList.contains('ShiftLeft')) {
-    layoutShiftLeftPressed();
+    ShiftLeftPressed();
   }
   if (event.currentTarget.classList.contains('ShiftRight')) {
-    layoutShiftRightPressed();
+    ShiftRightPressed();
   }
 
   if (event.currentTarget.classList.contains('CapsLock')) {
