@@ -123,22 +123,6 @@ const renderKeyboardsToDom = () => {
 renderKeyboardsToDom();
 // ______________________________________change language
 const changeLanguage = () => {
-//   if (lang === "eng") {
-//     lang = "rus";
-//     localStorage.lang = "rus";
-// } else if (lang === "rus") {
-//     lang = "eng";
-//     localStorage.lang = "eng";
-// }
-// // if (lang === "en") {
-// //   keyboard = keys.en;
-// //   localStorage.keyboard = "keys.en";
-// //   langSwitcherElement.innerHTML = "EN";
-// // } else if (lang === "ru") {
-// //   keyboard = keys.ru;
-// //   langSwitcherElement.innerHTML = "RU";
-// //   localStorage.keyboard = "keys.ru";
-// // }
   if (pageLanguage === 'eng') {
     pageLanguage = 'rus';
     window.localStorage.clear();
