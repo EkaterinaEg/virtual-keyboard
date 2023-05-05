@@ -11,7 +11,6 @@ class PageContent {
   buildElements() {
     this.container = this.createDomNode(this.container, 'div', 'container');
     this.title = this.createDomNode(this.title, 'p', 'page__title');
-   
 
     this.textarea = this.createDomNode(
       this.textarea,
@@ -20,7 +19,6 @@ class PageContent {
     );
     this.keyboard = this.createDomNode(this.keyboard, 'div', 'page__keyboard');
     this.shortcut = this.createDomNode(this.shortcut, 'p', 'page__shortcut');
-    this.shortcut.innerHTML = 'Use Ctrl + Alt to change language';
     this.langLabel = this.createDomNode(this.langLabel, 'p', 'page__langLabel');
 
     this.appendElements();
